@@ -1,19 +1,44 @@
 variable "ami_id" {
+  type = map(string)
+  default = {
+    "prd" = "ami-0c2b8ca1dad447f8a"
+    "stg" = "ami-0c2b8ca1dad447f8a"
+    "dev" = "ami-0ec1545979d0dc885" # us-east-1 Rocky 8 Linux
+  }
 
 }
- variable "region" {
+variable "region" {
+  type    = string
+  default = "us-east-1"
 
+}
 
- }
+variable "type_instance" {
+  type = map(string)
+  default = {
+    "prd" = "t3.medium"
+    "stg" = "t2.micro"
+    "dev" = "t2.micro"
+  }
 
- variable "type_instance" {
+}
 
- }
+variable "terraform_Env" {
+  type = string
 
- variable "terraform_Env" {
-
- }
-variable "manatory_tags" {
-
+}
+variable "mandatory_tags" {
+  type = map(map(string))
+  default = {
+    "prd" = {
+      "Env" = "prd"
+    }
+    "stg" = {
+      "Env" = "stg"
+    }
+    "dev" = {
+      "Env" = "dev"
+    }
+  }
 
 }
